@@ -1,4 +1,5 @@
 import requests
+import vincent
 
 def weather_data():
     weather_url = "http://www.wunderground.com/history/airport/KNYC/2013/1/1/CustomHistory.html?dayend=1&monthend=1&yearend=2014&req_city=NA&req_state=NA&req_statename=NA&format=1"
@@ -27,6 +28,18 @@ def weather_data():
 
     return weather
 
+def bad_weather():
+    weather = weather_data()
+    bad_days = weather.copy()
+
+    for item in weather:
+        if weather[item][' Events'] == '':
+            del bad_days[item]
+
+    return bad_days
+
+
+
 if __name__ == '__main__':
-   print(weather_data())
+    weather_data()
 
