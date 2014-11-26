@@ -28,7 +28,7 @@ def weather_data():
 
     return weather
 
-def bad_weather():
+def bad_weather_days():
     weather = weather_data()
     bad_days = weather.copy()
 
@@ -38,7 +38,16 @@ def bad_weather():
 
     return bad_days
 
+def good_weather_days():
+    weather = weather_data()
+    bad_days = bad_weather_days()
+    good_days = weather.copy()
 
+    for day in weather:
+        if day in bad_days.keys():
+            del good_days[day]
+
+    return good_days
 
 if __name__ == '__main__':
     weather_data()
